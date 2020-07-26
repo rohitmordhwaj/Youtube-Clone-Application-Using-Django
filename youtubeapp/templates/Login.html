@@ -1,0 +1,66 @@
+{% extends "homepage.html" %}
+
+{% block title %}
+Log into your Account
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Sign In Page !</h1><br>
+<div class="form-style-6">
+<form action="login" method="POST">
+    {% csrf_token %}
+    {{ form }}
+	<br>
+    <button type="submit" class="btn btn-primary" role="button">Log In</button>
+</form>
+</div>
+<style >
+	
+
+body{
+	background: white;
+	background-image: url(/static/3.jpg);
+	background-repeat: no-repeat;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.form-style-6{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 500px;
+	margin: 10px auto;
+	padding: 16px;
+	background: #F7F7F7;
+}
+
+.form-style-6 input[type="text"],
+.form-style-6 select 
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+</style>
+
+
+{% endblock %}

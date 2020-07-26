@@ -1,0 +1,92 @@
+{% extends "homepage.html" %}
+{% load static %}
+
+{% block title %}
+Video - 
+{% endblock %}
+
+
+{% block body %}
+
+<h2 style="text-transform: capitalize;">{{ vedio_by_id.Title }}</h2>
+
+
+<video width="800" height="500" controls>
+    <source src="{{vedio_by_id.path.url}}" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+<p>DESCRIPTION : {{ vedio_by_id.Discription }}</p>
+
+{% if form %}
+<div class="form-style-6">
+<form action="/youtube/comment" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type='hidden' name='vedio' value='{{ vedio_by_id.id }}'>
+    <br>
+    <button type="submit" class="btn btn-primary">Post Comment!</button>
+</form>
+</div>
+{% endif %}
+
+<div class="form-style-7">
+{% for comment in comments %}
+<h3 style="text-transform: capitalize; color: blue; ">{{ comment.user }}  {{ comment.created_on }} </h3>
+<h2 style="text-transform: capitalize;">{{ comment.text }}</h2> <br><br><br>
+{% endfor %}
+</div>
+
+
+
+
+<style>
+body{
+	background: white;
+	background-image: url(/static/3.jpg);
+	background-repeat: no-repeat;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.form-style-6{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 800px;
+	margin: 10px auto;
+	padding: 16px;
+	background: #F7F7F7;
+}
+
+.form-style-6 input[type="text"],
+.form-style-6 select 
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+
+.form-style-7{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 800px;
+	margin: 10px auto;
+	padding: 16px;
+	background: #F7F7F7;
+	text-align: left;
+}
+
+
+
+</style>
+{% endblock %}
